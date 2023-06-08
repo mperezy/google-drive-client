@@ -18,6 +18,8 @@ const isProduction = ENV === 'production';
 
 const mainWindowHeight = 1164;
 const mainWindowWidth = 1647 + (isProduction ? 0 : 770);
+const mainWindowMinWidth = 1000 + (isProduction ? 0 : 770);
+const mainWindowMinHeight = 700;
 
 const appObject: AppObject = {
   isAppLoaded: false,
@@ -37,6 +39,8 @@ const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
     height,
     width,
+    minHeight: mainWindowMinHeight,
+    minWidth: mainWindowMinWidth,
     icon: 'src/images/icon.png',
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
