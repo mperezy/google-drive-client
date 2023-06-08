@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": ["ES2021"],
+    "lib": [
+      "ES2021",
+      "dom"
+    ],
     "allowJs": true,
     "module": "commonjs",
     "skipLibCheck": true,
