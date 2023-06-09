@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  google-drive-electron:
+    build: .
+    image: google-drive-client
+    container_name: google-drive-client
+    hostname: google-drive-client
+    working_dir: /app
+    volumes:
+      - ./:/app
+#    stdin_open: true
+#    tty: true
