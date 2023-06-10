@@ -36,11 +36,11 @@
 - There are two npm commands both using `docker-compose` V1 or V2
   - ```shell
     # Using docker-compose v1
-    $ yarn makeWinDist:dockerComposeV1
+    $ yarn makeDistWin:composeV1
     ```
   - ```shell
     # Using docker-compose v2
-    $ yarn makeWinDist:dockerComposeV2
+    $ yarn makeDistWin:composeV2
     ```
 #### Outside Docker:
 

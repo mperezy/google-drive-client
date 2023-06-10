@@ -1,4 +1,3 @@
-import { config as dotenvConfig } from 'dotenv';
 import type { ForgeConfig } from '@electron-forge/shared-types';
 import { MakerSquirrel } from '@electron-forge/maker-squirrel';
 // import {MakerZIP} from '@electron-forge/maker-zip';
@@ -9,8 +8,6 @@ import { WebpackPlugin } from '@electron-forge/plugin-webpack';
 import { mainConfig } from './webpack.main.config';
 import { rendererConfig } from './webpack.renderer.config';
 
-dotenvConfig();
-
 const APP_NAME = 'Google Drive Client';
 const APP_NAME_ = APP_NAME.toLowerCase().replaceAll(' ', '-');
 
@@ -18,7 +15,6 @@ const config: ForgeConfig = {
   packagerConfig: {
     icon: './src/images/icon.png',
     executableName: 'google-drive-client',
-
   },
   rebuildConfig: {},
   makers: [

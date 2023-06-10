@@ -1,42 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Google Drive Client - No internet connection</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="no-internet-container">
-        <p>You have no Internet connection.</p>
-        <p>Please try later.</p>
+      <img id="image" alt="No internet image" src="../images/no-internet.png" />
+      <p id="no-internet-text-0">You have no Internet connection.</p>
+      <p id="no-internet-text-1">Please try later or wait until we get back.</p>
     </div>
-</body>
-<script type="application/ecmascript">
+  </body>
+  <script type="application/ecmascript">
     document.addEventListener('DOMContentLoaded', () => {
-        const dictionary = {
-            'es': {
-                'text0': 'No tienes conexión a Internet.',
-                'text1': 'Porfavor, inténtalo más tarde. '
-            },
-            'en-US': {
-                'text0': 'You have no Internet connection.',
-                'text1': 'Please, try later. '
-            },
-        };
+      const dictionary = {
+        'es': {
+          'text0': 'No tienes conexión a Internet.',
+          'text1': 'Porfavor, inténtalo más tarde o\n espera hasta que volvamos a conectarnos.',
+        },
+        'en-US': {
+          'text0': 'You have no Internet connection.',
+          'text1': 'Please, try later or wait until we get connected back.',
+        },
+      };
 
-        const noInternetText0 = document.getElementById('no-internet-text-0');
-        const noInternetText1 = document.getElementById('no-internet-text-1');
+      const noInternetText0 = document.getElementById('no-internet-text-0');
+      const noInternetText1 = document.getElementById('no-internet-text-1');
 
-        const language = navigator.language;
-        const noInternetText = dictionary[language] ?? null;
+      const language = navigator.language;
+      const noInternetText = dictionary[language] ?? null;
 
-        if (noInternetText0 && noInternetText1 && noInternetText) {
-            const { text0, text1 } = noInternetText;
-            noInternetText0.innerText = text0;
-            noInternetText1.innerText = text1;
-        }
+      if (noInternetText0 && noInternetText1 && noInternetText) {
+        const { text0, text1 } = noInternetText;
+        noInternetText0.innerText = text0;
+        noInternetText1.innerText = text1;
+      }
     });
-</script>
+  </script>
 </html>
