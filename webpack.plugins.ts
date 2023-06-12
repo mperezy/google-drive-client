@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+import { app } from 'electron';
 import fs from 'fs-extra';
 import path from 'path';
 import type IForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';

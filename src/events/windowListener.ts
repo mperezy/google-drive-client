@@ -1,12 +1,41 @@
 import { BrowserWindow } from 'electron';
+import Status from './';
+import { AppObject } from '../types';
 
-export default (window: BrowserWindow, isProduction: boolean) => {
-  window.webContents.on('did-create-window', (popupWindow: BrowserWindow) => {
-    popupWindow.setContentSize(1300, 950, false);
-    popupWindow.setMinimumSize(800, 500);
+export default ({
+  window,
+  appObject,
+  preloadEntry
+}: {
+  window: BrowserWindow,
+  appObject: AppObject,
+  preloadEntry: string
+}) => {
+  window.webContents.on('did-create-window', (createdWindow, createdWindowDetails) => {
+    createdWindow.destroy();
 
-    if (isProduction) {
-      popupWindow.setMenu(null);
-    }
+    const { url } = createdWindowDetails;
+    const popupWindow = new BrowserWindow({
+      height: 950,
+      width: 1300,
+      minHeight: 500,
+      minWidth: 800,
+      webPreferences: {
+        nodeIntegration: true,
+        preload: preloadEntry,
+      }
+    });
+
+    popupWindow.setMenu(null);
+    popupWindow.webContents.send(
+      Status.TOGGLE_DARK_MODE,
+      {
+        isEnabled: appObject.isDarkModeEnabled
+      }
+    );
+
+    popupWindow.loadURL(url).then(() => {
+      popupWindow.show();
+    });
   });
 };

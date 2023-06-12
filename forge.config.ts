@@ -62,6 +62,12 @@ const config: ForgeConfig = {
               js: './src/preload.ts',
             },
           },
+          {
+            name: 'popup_window',
+            preload: {
+              js: './src/popupPreload.ts'
+            }
+          }
         ],
       },
     }),

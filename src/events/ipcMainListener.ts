@@ -1,9 +1,10 @@
 import { ipcMain, BrowserWindow } from 'electron';
+import Status from './';
 import { AppObject, Urls } from '../types';
 
 export default (window: BrowserWindow, appObject: AppObject, urls: Urls) => {
   ipcMain.on(
-    'online-status-changed',
+    Status.ONLINE_STATUS_CHANGED,
     (event, data: { onlineStatus: boolean }) => {
       const { onlineStatus } = data;
       const { isAppLoaded, isNoInternetPageShown } = appObject;
@@ -23,6 +24,12 @@ export default (window: BrowserWindow, appObject: AppObject, urls: Urls) => {
             appObject.isAppLoaded = true;
           })
           .catch((error) => console.error('Something went wrong', { error }));
+      }
+
+      if (appObject.isDarkModeEnabled) {
+        window
+          .webContents
+          .send(Status.TOGGLE_DARK_MODE, { isEnabled: appObject.isDarkModeEnabled });
       }
     }
   );
