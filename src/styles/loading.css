@@ -15,12 +15,21 @@ body {
 .spinner {
   @apply w-16 h-16
     border-8 border-gdrive-black-300 border-solid
-    border-t-8 border-t-gdrive-blue-500
-    border-r-8 border-r-gdrive-green-500
-    border-b-8 border-b-gdrive-yellow-500
-    border-l-8 border-l-gdrive-red-500
     rounded-[50%]
     animate-spin;
+}
+.spinner-light {
+  @apply border-t-8 border-t-gdrive-blue-500
+    border-r-8 border-r-gdrive-green-500
+    border-b-8 border-b-gdrive-yellow-500
+    border-l-8 border-l-gdrive-red-500;
+}
+
+.spinner-dark {
+  @apply border-t-8 border-t-gdrive-blue-700
+  border-r-8 border-r-gdrive-green-500
+  border-b-8 border-b-gdrive-yellow-700
+  border-l-8 border-l-gdrive-red-700;
 }
 
 .loading-header {

@@ -24,8 +24,18 @@ updateStatus();
 
 ipcRenderer.on(Status.TOGGLE_DARK_MODE, (_, args) => {
   const { isEnabled } = args;
+  const spinner = document.getElementById('spinner');
   setFetchMethod(window);
 
-  if (isEnabled) enableDarkMode();
-  else disableDarkMode();
+  if (isEnabled) {
+    enableDarkMode();
+    if (spinner) {
+      spinner.className = spinner.className.replaceAll('spinner-light', 'spinner-dark');
+    }
+  } else {
+    disableDarkMode();
+    if (spinner) {
+      spinner.className = spinner.className.replaceAll('spinner-dark', 'spinner-light');
+    }
+  }
 });

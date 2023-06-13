@@ -9,6 +9,8 @@ export default (window: BrowserWindow, appObject: AppObject, urls: Urls) => {
       const { onlineStatus } = data;
       const { isAppLoaded, isNoInternetPageShown } = appObject;
 
+      if (!appObject.isProduction) console.log({ onlineStatus, appObject });
+
       if (!onlineStatus) {
         if (!isNoInternetPageShown) {
           window.loadURL(urls.noInternetUrl).then();
