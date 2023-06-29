@@ -36,6 +36,15 @@ export default ({
 
     popupWindow.loadURL(url).then(() => {
       popupWindow.show();
+      appObject.popupWindows.push(popupWindow);
     });
+  });
+
+  window.on('closed', () => {
+    const { popupWindows } = appObject;
+
+    if (popupWindows && popupWindows.length > 0) {
+      popupWindows.forEach((popWindow) => popWindow.destroy());
+    }
   });
 };

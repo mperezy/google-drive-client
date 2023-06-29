@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 import * as process from 'process';
 import env from '../env.json';
 import { AppObject } from './types';
@@ -33,6 +33,7 @@ const appObject: AppObject = {
   isNoInternetPageShown: false,
   isDarkModeEnabled: darkMode,
   isProduction,
+  popupWindows: [],
 };
 
 // Handle creating/removing shortcuts on Windows  when installing/uninstalling.
@@ -55,7 +56,12 @@ const createWindow = (): void => {
   });
 
   mainWindow.loadURL(LOADING_WINDOW_WEBPACK_ENTRY).then();
-  mainWindow.setMenu(mainMenu(mainWindow, app.getLocale(), appObject));
+
+  if (process.platform === 'darwin') {
+    Menu.setApplicationMenu(mainMenu(mainWindow, app.getLocale(), appObject));
+  } else {
+    mainWindow.setMenu(mainMenu(mainWindow, app.getLocale(), appObject));
+  }
 
   if (appObject.isDarkModeEnabled) {
     mainWindow.webContents.send(Status.TOGGLE_DARK_MODE, { isEnabled: true });
