@@ -3,6 +3,7 @@ import { MakerSquirrel } from '@electron-forge/maker-squirrel';
 // import {MakerZIP} from '@electron-forge/maker-zip';
 import { MakerDeb } from '@electron-forge/maker-deb';
 // import { MakerRpm } from '@electron-forge/maker-rpm';
+import MakerDMG from '@electron-forge/maker-dmg';
 import { WebpackPlugin } from '@electron-forge/plugin-webpack';
 
 import { mainConfig } from './webpack.main.config';
@@ -31,6 +32,11 @@ const config: ForgeConfig = {
 
       },
     }),
+    new MakerDMG({
+      name: APP_NAME_,
+      format: 'ULFO',
+      icon: './src/images/icon.icns',
+    })
   ],
   plugins: [
     new WebpackPlugin({

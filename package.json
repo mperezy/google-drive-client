@@ -10,6 +10,7 @@
     "start:prod": "yarn buildEnvJson production && electron-forge start",
     "makeDist:deb": "yarn package && yarn make --platform=linux",
     "makeDist:win": "yarn package && yarn make --platform=win32",
+    "makeDist:macos": "yarn package && yarn make --platform=darwin",
     "makeDistWin:composeV1": "docker-compose up",
     "makeDistWin:composeV2": "docker compose up",
     "package": "yarn buildEnvJson production && electron-forge package",
@@ -48,6 +49,7 @@
     "typescript": "~4.5.4"
   },
   "dependencies": {
+    "@electron-forge/maker-dmg": "^6.2.1",
     "darkreader": "^4.9.58",
     "electron-squirrel-startup": "^1.0.0"
   }
