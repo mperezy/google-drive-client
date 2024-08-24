@@ -1,4 +1,4 @@
-import { BrowserWindow, Menu } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 import { saveConfig } from '../utils/saveConfiguration';
 import { AppObject } from '../types';
 import Status from '../events';
@@ -8,9 +8,25 @@ const changeTheme = (window: BrowserWindow, isEnabled: boolean) => {
   window.webContents.send(Status.TOGGLE_DARK_MODE, { isEnabled });
 };
 
-export default (window: BrowserWindow, locale: string, appObject: AppObject) => {
+export default (window: BrowserWindow, appObject: AppObject) => {
+  const locale = app.getLocale();
   const wording = dictionary[locale];
   const template: Electron.MenuItemConstructorOptions[] = [
+    {
+      label: 'App',
+      submenu: [
+        {
+          label: wording.app.submenu[0].title,
+          accelerator: 'CmdOrCtrl+R',
+          click: () => window.webContents.reload(),
+        },
+        {
+          label: wording.app.submenu[1].title,
+          accelerator: 'CmdOrCtrl+Q',
+          click: () => app.quit(),
+        },
+      ],
+    },
     {
       label: wording.file.title,
       submenu: [
@@ -23,7 +39,7 @@ export default (window: BrowserWindow, locale: string, appObject: AppObject) => 
               click: () => {
                 changeTheme(window, true);
                 appObject.isDarkModeEnabled = true;
-                saveConfig( { theme: { darkMode: true, lightMode: false } });
+                saveConfig({ theme: { darkMode: true, lightMode: false } });
               },
             },
             {
@@ -34,11 +50,12 @@ export default (window: BrowserWindow, locale: string, appObject: AppObject) => 
                 appObject.isDarkModeEnabled = false;
                 saveConfig({ theme: { darkMode: false, lightMode: true } });
               },
-            }
-          ]
+            },
+          ],
         },
-      ]
-    }];
+      ],
+    },
+  ];
 
   return Menu.buildFromTemplate(template);
 };

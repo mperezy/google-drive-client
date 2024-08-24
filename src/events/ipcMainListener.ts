@@ -13,7 +13,8 @@ export default (window: BrowserWindow, appObject: AppObject, urls: Urls) => {
 
       if (!onlineStatus) {
         if (!isNoInternetPageShown) {
-          window.loadURL(urls.noInternetUrl).then();
+          window.loadURL(urls.noInternetUrl).then()
+            .catch((error) => console.error('Something went wrong', { error }));
           appObject.isNoInternetPageShown = true;
           appObject.isAppLoaded = false;
         }
