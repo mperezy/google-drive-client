@@ -1,4 +1,4 @@
-import { MenuItem } from '../types';
+import type { MenuItem } from 'types';
 
 export default {
   es: {
@@ -8,9 +8,9 @@ export default {
           title: 'Refrescar',
         },
         {
-          title: 'Salir'
-        }
-      ]
+          title: 'Salir',
+        },
+      ],
     },
     file: {
       title: 'Archivo',
@@ -20,8 +20,8 @@ export default {
           dark: 'Oscuro',
           light: 'Claro',
         },
-      }
-    }
+      },
+    },
   },
   'en-US': {
     app: {
@@ -40,9 +40,9 @@ export default {
         title: 'Theme',
         options: {
           dark: 'Dark',
-          light: 'Light'
+          light: 'Light',
         },
-      }
-    }
-  }
+      },
+    },
+  },
 } as { [key: string]: MenuItem };

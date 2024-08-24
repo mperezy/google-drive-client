@@ -1,8 +1,9 @@
-import { app, BrowserWindow, Menu } from 'electron';
-import { saveConfig } from '../utils/saveConfiguration';
-import { AppObject } from '../types';
-import Status from '../events';
+import type { BrowserWindow } from 'electron';
+import { app, Menu } from 'electron';
+import Status from 'ipc-events';
 import dictionary from './dictionary';
+import type { AppObject } from 'types';
+import { saveConfig } from 'utils/saveConfiguration';
 
 const changeTheme = (window: BrowserWindow, isEnabled: boolean) => {
   window.webContents.send(Status.TOGGLE_DARK_MODE, { isEnabled });
