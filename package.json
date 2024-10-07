@@ -5,7 +5,7 @@
   "description": "My own Google Drive client",
   "main": ".webpack/main",
   "scripts": {
-    "buildEnvJson": "ts-node buildEnv.ts",
+    "buildEnvJson": "ts-node build-env.ts",
     "start:dev": "yarn buildEnvJson && electron-forge start",
     "start:prod": "yarn buildEnvJson production && electron-forge start",
     "makeDist:deb": "yarn package && yarn make --platform=linux",
