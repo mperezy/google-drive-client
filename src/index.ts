@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from 'electron';
+import { app, BrowserWindow, Menu, globalShortcut } from 'electron';
 import * as process from 'process';
 import env from 'env.json';
 import type { AppObject } from 'types';
@@ -31,6 +31,7 @@ const { darkMode } = configuration.theme;
 
 const appObject: AppObject = {
   isAppLoaded: false,
+  isLoading: false,
   isNoInternetPageShown: false,
   isDarkModeEnabled: darkMode,
   isProduction,
@@ -82,6 +83,7 @@ const createWindow = (): void => {
   // IPC Events
   ipcMainListener(mainWindow, appObject, {
     mainUrl: GOOGLE_DRIVE_URL,
+    loadingUrl: LOADING_WINDOW_WEBPACK_ENTRY,
     noInternetUrl: NO_INTERNET_WINDOW_WEBPACK_ENTRY,
   });
 
@@ -94,7 +96,13 @@ const createWindow = (): void => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', () => createWindow());
+// app.on('ready', () => createWindow());
+
+app.whenReady().then(createWindow);
+
+app.on('browser-window-focus', () => globalShortcut.register('Cmd+QOrCtrl+Q', () => app.quit()));
+
+app.on('browser-window-blur', () => globalShortcut.unregisterAll());
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their main-menu bar to stay active until the user quits

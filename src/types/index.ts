@@ -2,6 +2,7 @@ import type { BrowserWindow } from 'electron';
 
 export type AppObject = {
   isAppLoaded: boolean;
+  isLoading: boolean;
   isNoInternetPageShown: boolean;
   isDarkModeEnabled: boolean;
   isProduction: boolean;
@@ -10,6 +11,7 @@ export type AppObject = {
 
 export type Urls = {
   mainUrl: string;
+  loadingUrl: string;
   noInternetUrl: string;
 };
 
