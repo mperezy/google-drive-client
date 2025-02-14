@@ -3,6 +3,7 @@ import path from 'path';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import type { Compiler } from 'webpack';
 
+const webpackRoot = path.resolve(__dirname, '.webpack/');
 const outputPath = path.resolve(__dirname, '.webpack/renderer/');
 const imageExtensions = ['.png', '.jpg', '.jpeg', '.gif'];
 
@@ -24,6 +25,14 @@ export const plugins = [
           fs.copySync(
             path.resolve(__dirname, 'src/images', file),
             path.resolve(outputPath, 'images', file),
+          );
+        });
+
+        const extensions = fs.readdirSync(path.resolve(__dirname, 'extensions'));
+        extensions.forEach((extension) => {
+          fs.copySync(
+            path.resolve(__dirname, 'extensions', extension),
+            path.resolve(webpackRoot, 'extensions', extension),
           );
         });
       });

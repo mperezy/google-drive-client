@@ -1,6 +1,6 @@
 import type { MenuItem } from 'types';
 
-export default {
+const dictionary: Record<string, MenuItem> = {
   es: {
     app: {
       submenu: [
@@ -21,6 +21,20 @@ export default {
           light: 'Claro',
         },
       },
+    },
+    edit: {
+      title: 'Editar',
+      submenu: [
+        { role: 'undo', label: 'Deshacer' },
+        { role: 'redo', label: 'Rehacer' },
+        { type: 'separator' },
+        { role: 'cut', label: 'Cortart' },
+        { role: 'copy', label: 'Copiar' },
+        { role: 'paste', label: 'Pegar' },
+        { role: 'delete', label: 'Borrar' },
+        { type: 'separator' },
+        { role: 'selectAll', label: 'Seleccionar todo' },
+      ],
     },
   },
   'en-US': {
@@ -44,5 +58,21 @@ export default {
         },
       },
     },
+    edit: {
+      title: 'Edit',
+      submenu: [
+        { role: 'undo', label: 'Undo' },
+        { role: 'redo', label: 'Redo' },
+        { type: 'separator' },
+        { role: 'cut', label: 'Cut' },
+        { role: 'copy', label: 'Copy' },
+        { role: 'paste', label: 'Paste' },
+        { role: 'delete', label: 'Delete' },
+        { type: 'separator' },
+        { role: 'selectAll', label: 'Select All' },
+      ],
+    },
   },
-} as { [key: string]: MenuItem };
+};
+
+export default dictionary;

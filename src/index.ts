@@ -1,4 +1,5 @@
-import { app, BrowserWindow, Menu, globalShortcut } from 'electron';
+import { app, BrowserWindow, Menu, globalShortcut, session } from 'electron';
+import path from 'path';
 import * as process from 'process';
 import env from 'env.json';
 import type { AppObject } from 'types';
@@ -45,6 +46,14 @@ if (require('electron-squirrel-startup')) {
 }
 
 const createWindow = (): void => {
+  session.defaultSession
+    .loadExtension(path.join(__dirname, '../extensions/google-docs-offline'))
+    .then((extension) => {
+      console.log({ extension });
+      return extension;
+    })
+    .catch((error) => console.log({ extensionError: error }));
+
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     height: mainWindowHeight,

@@ -1,5 +1,5 @@
 import type { BrowserWindow } from 'electron';
-import { app, Menu } from 'electron';
+import { app as electronApp, Menu } from 'electron';
 import Status from 'ipc-events';
 import dictionary from './dictionary';
 import type { AppObject } from 'types';
@@ -10,14 +10,16 @@ const changeTheme = (window: BrowserWindow, isEnabled: boolean) => {
 };
 
 export default (window: BrowserWindow, appObject: AppObject, mainUrl: string) => {
-  const locale = app.getLocale();
+  const locale = electronApp.getLocale();
   const wording = dictionary[locale];
+  const { app, file, edit } = wording;
+
   const template: Electron.MenuItemConstructorOptions[] = [
     {
       label: 'Google Drive Client',
       submenu: [
         {
-          label: wording.app.submenu[0].title,
+          label: app.submenu[0].title,
           accelerator: 'CmdOrCtrl+R',
           click: () =>
             window
@@ -28,21 +30,21 @@ export default (window: BrowserWindow, appObject: AppObject, mainUrl: string) =>
               ),
         },
         {
-          label: wording.app.submenu[1].title,
+          label: app.submenu[1].title,
           accelerator: 'CmdOrCtrl+Q',
-          click: () => app.quit(),
+          click: () => electronApp.quit(),
         },
       ],
     },
     {
-      label: wording.file.title,
+      label: file.title,
       submenu: [
         {
-          label: wording.file.submenu.title,
+          label: file.submenu.title,
           submenu: [
             {
               id: 'theme-dark',
-              label: wording.file.submenu.options.dark,
+              label: file.submenu.options.dark,
               click: () => {
                 changeTheme(window, true);
                 appObject.isDarkModeEnabled = true;
@@ -51,7 +53,7 @@ export default (window: BrowserWindow, appObject: AppObject, mainUrl: string) =>
             },
             {
               id: 'theme-light',
-              label: wording.file.submenu.options.light,
+              label: file.submenu.options.light,
               click: () => {
                 changeTheme(window, false);
                 appObject.isDarkModeEnabled = false;
@@ -61,6 +63,10 @@ export default (window: BrowserWindow, appObject: AppObject, mainUrl: string) =>
           ],
         },
       ],
+    },
+    {
+      label: edit.title,
+      submenu: edit.submenu,
     },
   ];
 

@@ -1,4 +1,4 @@
-import type { BrowserWindow } from 'electron';
+import type { BrowserWindow, MenuItemConstructorOptions } from 'electron';
 
 export type AppObject = {
   isAppLoaded: boolean;
@@ -30,6 +30,16 @@ export type MenuItem = {
         light: string;
       };
     };
+  };
+  edit: {
+    title: string;
+    submenu: (
+      | {
+          role: MenuItemConstructorOptions['role'];
+          label: string;
+        }
+      | { type: Extract<MenuItemConstructorOptions['type'], 'separator'> }
+    )[];
   };
 };
 
