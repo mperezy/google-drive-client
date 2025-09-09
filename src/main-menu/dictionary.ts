@@ -8,6 +8,9 @@ const dictionary: Record<string, MenuItem> = {
           title: 'Refrescar',
         },
         {
+          title: 'Minimizar',
+        },
+        {
           title: 'Salir',
         },
       ],
@@ -42,6 +45,9 @@ const dictionary: Record<string, MenuItem> = {
       submenu: [
         {
           title: 'Reload',
+        },
+        {
+          title: 'Minimize',
         },
         {
           title: 'Exit',
