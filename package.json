@@ -6,8 +6,8 @@
   "main": ".webpack/main",
   "scripts": {
     "buildEnvJson": "ts-node build-env.ts",
-    "start:dev": "yarn buildEnvJson && electron-forge start",
-    "start:prod": "yarn buildEnvJson production && electron-forge start",
+    "dev": "yarn buildEnvJson && electron-forge start",
+    "prod": "yarn buildEnvJson production && electron-forge start",
     "makeDist:deb": "yarn package && yarn make --platform=linux",
     "makeDist:win": "yarn package && yarn make --platform=win32",
     "makeDist:macos": "yarn package && yarn make --platform=darwin",

@@ -10,7 +10,8 @@ const changeTheme = (window: BrowserWindow, isEnabled: boolean) => {
 };
 
 export default (window: BrowserWindow, appObject: AppObject, mainUrl: string) => {
-  const locale = electronApp.getLocale();
+  const appLocale = electronApp.getLocale();
+  const locale = appLocale.includes('es') ? 'es' : 'en';
   const wording = dictionary[locale];
   const { app, file, edit } = wording;
 
